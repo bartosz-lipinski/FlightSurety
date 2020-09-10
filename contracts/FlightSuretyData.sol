@@ -12,6 +12,12 @@ contract FlightSuretyData {
     address private contractOwner;                                      // Account used to deploy contract
     bool private operational = true;                                    // Blocks all state changes throughout the contract if false
 
+    struct Airline {
+        string name;
+    }
+
+    mapping(address => Airline) public airlines;
+
     /********************************************************************************************/
     /*                                       EVENT DEFINITIONS                                  */
     /********************************************************************************************/
@@ -99,11 +105,15 @@ contract FlightSuretyData {
     *
     */   
     function registerAirline
-                            (   
+                            (    
+                                address airline,
+                                string name
                             )
                             external
                             pure
     {
+        Airline memory item = Airline(name);
+        airlines[airline] = item;
     }
 
 
