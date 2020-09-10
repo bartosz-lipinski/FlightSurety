@@ -110,7 +110,7 @@ contract FlightSuretyData {
                                 string name
                             )
                             external
-                            pure
+                            requireIsOperational
     {
         Airline memory item = Airline(name);
         airlines[airline] = item;
