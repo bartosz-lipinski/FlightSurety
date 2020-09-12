@@ -16,7 +16,7 @@ contract FlightSuretyData {
         string name;
     }
 
-    mapping(address => Airline) public airlines;
+    mapping(address => Airline) public registeredAirlines;
 
     /********************************************************************************************/
     /*                                       EVENT DEFINITIONS                                  */
@@ -113,7 +113,7 @@ contract FlightSuretyData {
                             requireIsOperational
     {
         Airline memory item = Airline(name);
-        airlines[airline] = item;
+        registeredAirlines[airline] = item;
     }
 
 
@@ -126,6 +126,7 @@ contract FlightSuretyData {
                             )
                             external
                             payable
+                            requireIsOperational
     {
 
     }
@@ -138,6 +139,7 @@ contract FlightSuretyData {
                                 )
                                 external
                                 pure
+                                requireIsOperational
     {
     }
     
@@ -151,6 +153,7 @@ contract FlightSuretyData {
                             )
                             external
                             pure
+                            requireIsOperational
     {
     }
 
@@ -164,6 +167,7 @@ contract FlightSuretyData {
                             )
                             public
                             payable
+                            requireIsOperational
     {
     }
 
