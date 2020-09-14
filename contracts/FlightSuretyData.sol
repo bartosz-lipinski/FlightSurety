@@ -23,6 +23,7 @@ contract FlightSuretyData {
     /*                                       EVENT DEFINITIONS                                  */
     /********************************************************************************************/
 
+    event AirlineRegistered(address airline, string name);
 
     /**
     * @dev Constructor
@@ -114,10 +115,9 @@ contract FlightSuretyData {
                             requireIsOperational
     {
         Airline memory item = Airline(name);
-        airlines[addr] = item;
-        registeredAirlines[airline] = item;
-
-        // TODO: add event
+        airlines[airline] = item;
+        registeredAirlines.push(airline);
+        emit AirlineRegistered(airline, name);
     }
 
 
@@ -143,7 +143,6 @@ contract FlightSuretyData {
                                 (
                                 )
                                 external
-                                pure
                                 requireIsOperational
     {
     }
@@ -155,11 +154,12 @@ contract FlightSuretyData {
     */
     function pay
                             (
+                                address passanger
                             )
                             external
-                            pure
                             requireIsOperational
     {
+
     }
 
    /**
